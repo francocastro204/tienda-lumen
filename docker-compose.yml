@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    ports:
+      - "6006:6006"
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      REDIS_URL: redis://redis:6379
+      PHOENIX_ENDPOINT: http://phoenix:6006/v1/traces
+      PHOENIX_PROJECT: tienda-lumen
+      CHROMA_DIR: /app/chroma
+    depends_on:
+      - redis
+      - phoenix

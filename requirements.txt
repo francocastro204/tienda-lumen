@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+redis
+langgraph
+langgraph-checkpoint-redis
+langchain
+langchain-core
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+chromadb
+arize-phoenix
+openinference-instrumentation-langchain
+openinference-instrumentation-google-genai
+python-dotenv
+pydantic
