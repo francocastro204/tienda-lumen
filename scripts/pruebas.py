@@ -2,9 +2,10 @@
 
 import asyncio
 import json
+import os
 import urllib.request
 
-BASE = "http://127.0.0.1:8000"
+BASE = os.environ.get("API_BASE", "http://127.0.0.1:8000")
 
 CASOS = [
     "Pedrito compró el FIFA 26 en caja a 21000 pesos hace 9 días. El código de activación no se canjeó. ¿Corresponde la devolución?",

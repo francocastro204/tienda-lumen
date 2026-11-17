@@ -45,6 +45,12 @@ cp .env.example .env
 
 Eso es `docker compose up --build`. Quedan Redis en el puerto 6379, Phoenix en http://localhost:6006 y la API en http://localhost:8000. La documentación de los endpoints está en http://localhost:8000/docs.
 
+Si Redis y Phoenix ya están corriendo en la máquina, sin Docker:
+
+```bash
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
 Python 3.12. Las dependencias están en `requirements.txt`. Los modelos y las URLs salen de `.env`. El ejemplo está en `.env.example`, sin claves.
 
 ## Una solicitud
@@ -77,4 +83,4 @@ Con la API ya levantada:
 python scripts/pruebas.py
 ```
 
-Manda cinco solicitudes juntas. El worker las toma de a una. La primera que se pausa se rechaza. La segunda se aprueba. Las trazas quedan en Phoenix, proyecto `tienda-lumen`. Las capturas de esa corrida están en `screenshots/`.
+Manda cinco solicitudes juntas. El worker las toma de a una. La primera que se pausa se rechaza. La segunda se aprueba. Las trazas quedan en Phoenix, proyecto `tienda-lumen`, en los últimos 15 minutos de la corrida. En `screenshots/` están el volumen de trazas, la latencia con la serie P95 (el pico queda cerca de 21 s) y el costo, que Phoenix calcula bajo $0.01. Si Gemini responde 429, el job queda `FAILED`.
